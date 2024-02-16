@@ -25,28 +25,26 @@ const Dashboard = () => {
           return null;
         });
       });
+      setCount(true)
   }, [count]);
 
   function handleChange(e) {
-    const input = e.target.value;
+    const input = e.target.value.toLowerCase();
     if (input === '') {
-        console.log(input.length)
         setCount(false)
     } else {
-      const data1 = admiLlist.filter((item) => {
-        const item1 = item.first_name + " " + item.last_name;
+      setAdminList(prev => prev.filter((item) => {
+        const item1 = item.first_name.toLowerCase() + " " + item.last_name.toLowerCase();
         if (item1.slice(0, input.length) === input) {
           return item;
         }
-      });
-      setAdminList(data1);
-      const data2 = memberList.filter((item) => {
-        const item1 = item.first_name + " " + item.last_name;
+      }));
+      setMemberList(prev => prev.filter((item) => {
+        const item1 = item.first_name.toLowerCase() + " " + item.last_name.toLowerCase();
         if (item1.slice(0, input.length) === input) {
           return item;
         }
-      });
-      setMemberList(data2);
+      }));
     }
     console.log(input);
   }
