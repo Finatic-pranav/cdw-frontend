@@ -28,8 +28,24 @@ const Dashboard = () => {
       setCount(true)
   }, [count]);
 
+  function division() {
+    const admin = [];
+    const member = [];
+    dataList.map((item) => {
+      if (item.role === "admin") {
+        admin.push(item);
+      } else {
+        member.push(item);
+      }
+      setAdminList(admin);
+      setMemberList(member);
+      return null;
+    });
+  }
+
   function handleChange(e) {
     const input = e.target.value.toLowerCase();
+    division()
     if (input === '') {
         setCount(false)
     } else {
@@ -46,8 +62,9 @@ const Dashboard = () => {
         }
       }));
     }
-    console.log(input);
   }
+  console.log("input");
+
 
   return (
     <>
